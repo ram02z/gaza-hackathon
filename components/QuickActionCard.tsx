@@ -1,4 +1,5 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react-native';
+import { TouchableOpacity, View, Text } from 'react-native';
 
 interface QuickActionCardProps {
   title: string;
@@ -20,45 +21,48 @@ const QuickActionCard = ({
   const getVariantClasses = () => {
     switch (variant) {
       case 'primary':
-        return 'border-primary/20 bg-primary-light/10 hover:bg-primary-light/20';
+        return 'border-primary/20 bg-primary-light/10';
       case 'success':
-        return 'border-success/20 bg-success-light/10 hover:bg-success-light/20';
+        return 'border-success/20 bg-success-light/10';
       default:
-        return 'border-border bg-card hover:bg-muted/50';
+        return 'border-border bg-card';
     }
   };
 
   return (
-    <button
-      onClick={onClick}
+    <TouchableOpacity
+      onPress={onClick}
       className={`
-        medical-card p-6 w-full text-left transition-all duration-200
-        active:scale-95 hover:shadow-md relative
+        p-6 w-full rounded-lg border
+        active:scale-95 relative
         ${getVariantClasses()}
       `}
     >
       {urgentCount && urgentCount > 0 && (
-        <div className="absolute -top-2 -right-2 bg-warning text-warning-foreground text-xs font-medium px-2 py-1 rounded-full min-w-[24px] text-center">
-          {urgentCount}
-        </div>
+        <View className="absolute -top-2 -right-2 bg-warning text-warning-foreground text-xs font-medium px-2 py-1 rounded-full min-w-[24px] items-center justify-center">
+          <Text className="text-warning-foreground text-xs font-medium">{urgentCount}</Text>
+        </View>
       )}
 
-      <div className="flex items-start gap-4">
-        <div className={`
+      <View className="flex-row items-start gap-4">
+        <View className={`
           p-3 rounded-lg
-          ${variant === 'primary' ? 'bg-primary text-primary-foreground' :
-            variant === 'success' ? 'bg-success text-success-foreground' :
-            'bg-muted text-muted-foreground'}
+          ${variant === 'primary' ? 'bg-primary' :
+            variant === 'success' ? 'bg-success' :
+            'bg-muted'}
         `}>
-          <Icon className="w-6 h-6" />
-        </div>
+          <Icon className={`w-6 h-6 ${
+            variant === 'primary' ? 'text-primary-foreground' :
+            variant === 'success' ? 'text-success-foreground' :
+            'text-muted-foreground'}`} />
+        </View>
 
-        <div className="flex-1">
-          <h3 className="font-semibold text-foreground mb-1">{title}</h3>
-          <p className="text-sm text-muted-foreground leading-relaxed">{description}</p>
-        </div>
-      </div>
-    </button>
+        <View className="flex-1">
+          <Text className="font-semibold text-foreground mb-1 text-base">{title}</Text>
+          <Text className="text-sm text-muted-foreground leading-relaxed">{description}</Text>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 

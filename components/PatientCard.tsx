@@ -1,4 +1,5 @@
-import { User, Calendar, AlertCircle, Clock } from "lucide-react";
+import { User, Calendar, AlertCircle, Clock } from "lucide-react-native";
+import { View, Text, TouchableOpacity } from "react-native";
 
 interface PatientCardProps {
   id: string;
@@ -35,54 +36,64 @@ const PatientCard = ({
   };
 
   return (
-    <button
-      onClick={onClick}
-      className="medical-card p-4 w-full text-left hover:shadow-md transition-all duration-200 active:scale-95 relative"
+    <TouchableOpacity
+      onPress={onClick}
+      className="bg-card p-4 w-full rounded-lg border border-border active:scale-95 relative"
     >
       {urgentFlags > 0 && (
-        <div className="absolute top-3 right-3 bg-warning text-warning-foreground text-xs font-medium px-2 py-1 rounded-full">
-          <AlertCircle className="w-3 h-3 inline mr-1" />
-          {urgentFlags}
-        </div>
+        <View className="absolute top-3 right-3 bg-warning px-2 py-1 rounded-full flex-row items-center">
+          <AlertCircle className="w-3 h-3 text-warning-foreground mr-1" />
+          <Text className="text-warning-foreground text-xs font-medium">
+            {urgentFlags}
+          </Text>
+        </View>
       )}
 
-      <div className="flex items-start gap-3">
-        <div className="bg-muted p-2 rounded-full flex-shrink-0">
+      <View className="flex-row items-start gap-3">
+        <View className="bg-muted p-2 rounded-full flex-shrink-0">
           <User className="w-5 h-5 text-muted-foreground" />
-        </div>
+        </View>
 
-        <div className="flex-1 min-w-0">
-          <div className="flex items-start justify-between mb-2">
-            <div>
-              <h3 className="font-semibold text-foreground truncate">{name}</h3>
-              <p className="text-sm text-muted-foreground">
+        <View className="flex-1 min-w-0">
+          <View className="flex-row items-start justify-between mb-2">
+            <View>
+              <Text className="font-semibold text-foreground" numberOfLines={1}>
+                {name}
+              </Text>
+              <Text className="text-sm text-muted-foreground">
                 {age} years •{" "}
                 {gender === "M" ? "Male" : gender === "F" ? "Female" : "Other"}
-              </p>
-            </div>
-          </div>
+              </Text>
+            </View>
+          </View>
 
           {condition && (
-            <div className="mb-2">
-              <span className="text-xs bg-primary-light text-primary px-2 py-1 rounded-full">
-                {condition}
-              </span>
-            </div>
+            <View className="mb-2">
+              <View className="bg-primary/10 px-2 py-1 rounded-full self-start">
+                <Text className="text-xs text-primary font-medium">
+                  {condition}
+                </Text>
+              </View>
+            </View>
           )}
 
-          <div className="flex items-center gap-4 text-xs text-muted-foreground">
-            <div className="flex items-center gap-1">
-              <Clock className="w-3 h-3" />
-              <span>{formatLastVisit(lastVisit)}</span>
-            </div>
-            <div className="flex items-center gap-1">
-              <Calendar className="w-3 h-3" />
-              <span>ID: {id.slice(-6)}</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </button>
+          <View className="flex-row items-center gap-4 text-xs text-muted-foreground mt-2">
+            <View className="flex-row items-center gap-1">
+              <Clock className="w-3 h-3 text-muted-foreground" />
+              <Text className="text-xs text-muted-foreground">
+                {formatLastVisit(lastVisit)}
+              </Text>
+            </View>
+            <View className="flex-row items-center gap-1">
+              <Calendar className="w-3 h-3 text-muted-foreground" />
+              <Text className="text-xs text-muted-foreground">
+                ID: {id.slice(-6)}
+              </Text>
+            </View>
+          </View>
+        </View>
+      </View>
+    </TouchableOpacity>
   );
 };
 

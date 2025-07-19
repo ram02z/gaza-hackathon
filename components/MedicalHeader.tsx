@@ -1,4 +1,5 @@
-import { Wifi, WifiOff, Bluetooth, BluetoothOff } from "lucide-react";
+import { Wifi, WifiOff, Bluetooth, BluetoothOff } from "lucide-react-native";
+import { Text, View } from "react-native";
 
 interface MedicalHeaderProps {
   isOnline?: boolean;
@@ -12,56 +13,56 @@ const MedicalHeader = ({
   connectedDevices = 2,
 }: MedicalHeaderProps) => {
   return (
-    <header className="medical-card p-4 mb-6">
-      <div className="flex justify-between items-center">
-        <div>
-          <h1 className="text-xl font-semibold text-foreground">MedConnect</h1>
-          <p className="text-sm text-muted-foreground">
+    <View className="medical-card p-4 mb-6">
+      <View className="flex-row justify-between items-center">
+        <View>
+          <Text className="text-xl font-semibold text-foreground">MedConnect</Text>
+          <Text className="text-sm text-muted-foreground">
             Frontline Medical Care
-          </p>
-        </div>
+          </Text>
+        </View>
 
-        <div className="flex items-center gap-4">
+        <View className="flex-row items-center gap-4">
           {/* Internet Status */}
-          <div className="flex items-center gap-2">
+          <View className="items-center gap-2">
             {isOnline ? (
               <Wifi className="w-5 h-5 text-success" />
             ) : (
               <WifiOff className="w-5 h-5 text-muted-foreground" />
             )}
-            <span className="text-xs text-muted-foreground">
+            <Text className="text-xs text-muted-foreground">
               {isOnline ? "Online" : "Offline"}
-            </span>
-          </div>
+            </Text>
+          </View>
 
           {/* Bluetooth Status */}
-          <div className="flex items-center gap-2">
+          <View className="items-center gap-2">
             {bluetoothConnected ? (
               <Bluetooth className="w-5 h-5 text-primary" />
             ) : (
               <BluetoothOff className="w-5 h-5 text-muted-foreground" />
             )}
-            <span className="text-xs text-muted-foreground">
+            <Text className="text-xs text-muted-foreground">
               {bluetoothConnected
                 ? `${connectedDevices} devices`
                 : "No devices"}
-            </span>
-          </div>
+            </Text>
+          </View>
 
           {/* Sync Status Indicator */}
-          <div className="flex items-center gap-2">
-            <div
-              className={`status-indicator ${
+          <View className="items-center gap-2">
+            <View
+              className={`w-2 h-2 rounded-full ${
                 bluetoothConnected ? "bg-success" : "bg-warning"
               }`}
             />
-            <span className="text-xs text-muted-foreground">
+            <Text className="text-xs text-muted-foreground">
               {bluetoothConnected ? "Synced" : "Pending"}
-            </span>
-          </div>
-        </div>
-      </div>
-    </header>
+            </Text>
+          </View>
+        </View>
+      </View>
+    </View>
   );
 };
 

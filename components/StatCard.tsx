@@ -1,4 +1,5 @@
-import { LucideIcon } from 'lucide-react';
+import { LucideIcon } from 'lucide-react-native';
+import { View, Text } from 'react-native';
 
 interface StatCardProps {
   title: string;
@@ -24,7 +25,7 @@ const StatCard = ({
       case 'warning':
         return 'border-warning/20 bg-warning-light/5';
       default:
-        return 'border-border';
+        return 'border-border bg-card';
     }
   };
 
@@ -40,21 +41,21 @@ const StatCard = ({
   };
 
   return (
-    <div className={`medical-card p-4 ${getVariantClasses()}`}>
-      <div className="flex items-start justify-between">
-        <div className="flex-1">
-          <p className="text-sm text-muted-foreground mb-1">{title}</p>
-          <p className="text-2xl font-semibold text-foreground mb-1">{value}</p>
+    <View className={`flex-1 rounded-lg border p-4 ${getVariantClasses()}`}>
+      <View className="flex-row items-start justify-between">
+        <View className="flex-1">
+          <Text className="text-sm text-muted-foreground mb-1">{title}</Text>
+          <Text className="text-2xl font-semibold text-foreground mb-1">{value}</Text>
           {subtitle && (
-            <p className="text-xs text-muted-foreground">{subtitle}</p>
+            <Text className="text-xs text-muted-foreground">{subtitle}</Text>
           )}
-        </div>
+        </View>
 
-        <div className={`p-2 rounded-lg bg-background ${getIconClasses()}`}>
-          <Icon className="w-5 h-5" />
-        </div>
-      </div>
-    </div>
+        <View className={`p-2 rounded-lg bg-background`}>
+          <Icon className={`w-5 h-5 ${getIconClasses()}`} />
+        </View>
+      </View>
+    </View>
   );
 };
 
