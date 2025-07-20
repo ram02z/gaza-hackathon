@@ -41,17 +41,16 @@ class RealBLEMessenger {
   async requestPermissions(): Promise<boolean> {
     if (Platform.OS === 'android') {
       try {
-        const granted = await PermissionsAndroid.request(
+        const permissions = [
           PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-          {
-            title: 'Bluetooth Permission',
-            message: 'This app needs Bluetooth and location permissions to scan for devices.',
-            buttonNeutral: 'Ask Me Later',
-            buttonNegative: 'Cancel',
-            buttonPositive: 'OK',
-          }
+          PermissionsAndroid.PERMISSIONS.BLUETOOTH_SCAN,
+          PermissionsAndroid.PERMISSIONS.BLUETOOTH_CONNECT,
+        ];
+        const granted = await PermissionsAndroid.requestMultiple(permissions);
+        const allGranted = permissions.every(
+          perm => granted[perm] === PermissionsAndroid.RESULTS.GRANTED
         );
-        return granted === PermissionsAndroid.RESULTS.GRANTED;
+        return allGranted;
       } catch (err) {
         console.warn(err);
         return false;
