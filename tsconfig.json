@@ -23,11 +23,8 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
-<<<<<<< HEAD
+    "nativewind-env.d.ts",
     "app",
     "tests"
-=======
-    "nativewind-env.d.ts"
->>>>>>> master
   ]
 }
