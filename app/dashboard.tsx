@@ -1,32 +1,33 @@
+import { useRouter } from "expo-router";
+import {
+  Bell,
+  FileText,
+  Plus,
+  Search,
+  UserPlus,
+  Users
+} from "lucide-react-native";
 import { useState } from "react";
 import {
   StyleSheet,
+  Text,
   TextInput,
   TouchableOpacity,
-  View,
-  Text,
   useColorScheme,
+  View,
 } from "react-native";
-import {
-  Users,
-  UserPlus,
-  Activity,
-  FileText,
-  Search,
-  Bell,
-  Plus,
-} from "lucide-react-native";
 
-import ParallaxScrollView from "@/components/ParallaxScrollView";
-import { Colors } from "@/constants/Colors";
 import MedicalHeader from "@/components/MedicalHeader";
-import QuickActionCard from "@/components/QuickActionCard";
 import PatientCard from "@/components/PatientCard";
+import QuickActionCard from "@/components/QuickActionCard";
+import ScrollView from "@/components/ScrollView";
 import StatCard from "@/components/StatCard";
+import { Colors } from "@/constants/Colors";
 
 const Dashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const colorScheme = useColorScheme() ?? "light";
+  const router = useRouter();
 
   function noop() {}
 
@@ -67,12 +68,7 @@ const Dashboard = () => {
 
   return (
     <View style={styles.fullScreen}>
-      <ParallaxScrollView
-        headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
-        headerImage={
-          <Activity size={310} color="#808080" style={styles.headerImage} />
-        }
-      >
+      <ScrollView>
         <View style={styles.container}>
           <MedicalHeader
             isOnline={false}
@@ -123,13 +119,13 @@ const Dashboard = () => {
                 description="Register a new patient and create medical profile"
                 icon={UserPlus}
                 variant="primary"
-                onClick={noop}
+                onClick={() => router.push("/patient/new")}
               />
               <QuickActionCard
                 title="Medical Reports"
                 description="View and create patient medical reports"
                 icon={FileText}
-                onClick={noop}
+                onClick={() => router.push({ pathname: "/patient/[id]", params: { id: "1" }})}
               />
             </View>
           </View>
@@ -152,7 +148,7 @@ const Dashboard = () => {
             </View>
           </View>
         </View>
-      </ParallaxScrollView>
+      </ScrollView>
       <TouchableOpacity
         onPress={noop}
         style={[styles.fab, { backgroundColor: Colors.light.tint }]}
@@ -165,12 +161,6 @@ const Dashboard = () => {
 
 const styles = StyleSheet.create({
   fullScreen: { flex: 1 },
-  headerImage: {
-    color: "#808080",
-    bottom: -90,
-    left: -35,
-    position: "absolute",
-  },
   container: { padding: 16, gap: 24 },
   searchContainer: {
     flexDirection: "row",

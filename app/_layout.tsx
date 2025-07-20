@@ -1,14 +1,14 @@
 import '@/global.css';
 
+import { setAndroidNavigationBar } from '@/lib/android-navigation-bar';
+import { NAV_THEME } from '@/lib/constants';
+import { useColorScheme } from '@/lib/useColorScheme';
 import { DarkTheme, DefaultTheme, Theme, ThemeProvider } from '@react-navigation/native';
+import { PortalHost } from '@rn-primitives/portal';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import * as React from 'react';
-import { Appearance, Platform, View } from 'react-native';
-import { NAV_THEME } from '@/lib/constants';
-import { useColorScheme } from '@/lib/useColorScheme';
-import { PortalHost } from '@rn-primitives/portal';
-import { setAndroidNavigationBar } from '@/lib/android-navigation-bar';
+import { Appearance, Platform } from 'react-native';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -21,12 +21,12 @@ const DARK_THEME: Theme = {
 
 export {
   // Catch any errors thrown by the Layout component.
-  ErrorBoundary,
+  ErrorBoundary
 } from 'expo-router';
 
 const usePlatformSpecificSetup = Platform.select({
   web: useSetWebBackgroundClassName,
-  android: useSetAndroidNavigationBar,
+  android: noop,
   default: noop,
 });
 
@@ -38,7 +38,10 @@ export default function RootLayout() {
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style={isDarkColorScheme ? 'light' : 'dark'} />
       <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="index" />
+        <Stack.Screen name="dashboard" />
+        <Stack.Screen name="patient/[id]" />
+        <Stack.Screen name="patient/new" />
         <Stack.Screen name="+not-found" />
       </Stack>
       <PortalHost />
