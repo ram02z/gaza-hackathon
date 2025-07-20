@@ -60,20 +60,31 @@
     "react": "19.0.0",
     "react-dom": "19.0.0",
     "react-native": "0.79.5",
+    "react-native-camera": "^4.2.1",
+    "react-native-gesture-handler": "~2.24.0",
+    "react-native-mmkv": "^3.3.0",
+    "react-native-qrcode-svg": "^6.3.15",
     "react-native-reanimated": "~3.17.5",
     "react-native-safe-area-context": "5.4.0",
     "react-native-screens": "^4.10.0",
     "react-native-svg": "15.11.2",
     "react-native-web": "~0.20.0",
-    "tailwind-merge": "^2.2.1",
-    "tailwindcss": "3.3.5",
-    "tailwindcss-animate": "^1.0.7"
+    "react-native-webview": "13.13.5",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.26.0",
     "@types/react": "~19.0.14",
     "prettier": "^3.6.2",
-    "typescript": "^5.8.3"
+    "eslint": "^9.25.0",
+    "eslint-config-expo": "~9.2.0",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.8.3",
+    "tailwind-merge": "^2.2.1",
+    "tailwindcss": "3.3.5",
+    "tailwindcss-animate": "^1.0.7"
   },
   "private": true
 }
