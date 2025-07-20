@@ -1,0 +1,155 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Medical app design system - humanitarian, calming, trustworthy
+All colors MUST be HSL for consistency.
+*/
+
+@layer base {
+  :root {
+    /* Background - soft warm white for comfort */
+    --background: 30 15% 98%;
+    --foreground: 220 15% 20%;
+
+    /* Cards - clean white with subtle warmth */
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 20%;
+
+    /* Popovers */
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 20%;
+
+    /* Primary - medical blue for trust and reliability */
+    --primary: 217 91% 60%; /* #3B82F6 converted to HSL */
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 217 91% 55%;
+    --primary-light: 217 91% 85%;
+
+    /* Success - healing green for positive outcomes */
+    --success: 158 64% 52%; /* #10B981 converted to HSL */
+    --success-foreground: 0 0% 100%;
+    --success-light: 158 64% 85%;
+
+    /* Warning - warm orange for alerts */
+    --warning: 25 95% 53%;
+    --warning-foreground: 0 0% 100%;
+    --warning-light: 25 95% 85%;
+
+    /* Secondary - warm neutral */
+    --secondary: 30 5% 96%;
+    --secondary-foreground: 220 15% 25%;
+
+    /* Muted - soft greys */
+    --muted: 30 5% 94%;
+    --muted-foreground: 220 10% 50%;
+
+    /* Accent - subtle highlight */
+    --accent: 30 5% 92%;
+    --accent-foreground: 220 15% 25%;
+
+    /* Destructive - medical red */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    /* Borders and inputs - soft and minimal */
+    --border: 30 5% 88%;
+    --input: 30 5% 94%;
+    --ring: 217 91% 60%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  /* Medical app specific utilities */
+  .tap-target {
+    @apply min-h-[44px] min-w-[44px] flex items-center justify-center;
+  }
+
+  .medical-card {
+    @apply bg-card border border-border rounded-lg shadow-sm;
+  }
+
+  .status-indicator {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .medical-button {
+    @apply tap-target px-6 py-3 rounded-lg font-medium transition-all duration-200;
+  }
+
+  .medical-button-primary {
+    @apply medical-button bg-primary text-primary-foreground hover:bg-primary/90 active:scale-95;
+  }
+
+  .medical-button-success {
+    @apply medical-button bg-success text-success-foreground hover:bg-success/90 active:scale-95;
+  }
+
+  .medical-button-secondary {
+    @apply medical-button bg-secondary text-secondary-foreground hover:bg-secondary/80 active:scale-95;
+  }
+}
