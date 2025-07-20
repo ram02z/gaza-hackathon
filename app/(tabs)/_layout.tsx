@@ -53,6 +53,20 @@ export default function TabLayout() {
           ),
         }}
       />
+      <Tabs.Screen
+        name="ble"
+        options={{
+          title: 'BLE Demo',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="antenna.radiowaves.left.and.right" color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="real-ble"
+        options={{
+          title: 'Real BLE',
+          tabBarIcon: ({ color }) => <IconSymbol size={28} name="antenna.radiowaves.left.and.right.circle" color={color} />,
+        }}
+      />
     </Tabs>
   );
 }
