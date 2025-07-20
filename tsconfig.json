@@ -5,6 +5,7 @@
     "target": "ES5",
     "lib": ["ES2015", "DOM"],
     "strict": true,
+    "baseUrl": ".",
     "paths": {
       "@/*": [
         "./*"
@@ -22,7 +23,11 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
+<<<<<<< HEAD
     "app",
     "tests"
+=======
+    "nativewind-env.d.ts"
+>>>>>>> master
   ]
 }
